@@ -1,0 +1,29 @@
+d_db = {'1': 'один',  '3': 'три', '5': 'пять', '7': 'семь', '9': 'девять'}
+buffer_len = 1
+work_buffer = ""
+d_max = 0
+s_max = ""
+work_buffer_len = buffer_len
+with open("text.txt") as file:
+    buffer = file.read(buffer_len)
+    if not buffer:
+        print("\nФайл text.txt пустой.\nДобавьте непустой файл в директорию или переименуйте существующий файл.")
+    while buffer:
+        while buffer >= '0' and buffer <= '9':
+            work_buffer += buffer
+            buffer = file.read(buffer_len)
+        if len(work_buffer) > 0:
+            if '777' in work_buffer and work_buffer.count('777')==1:
+                odd_digits = ''
+                for digit in work_buffer:
+                    if int(digit) % 2 != 0:
+                        odd_digits += digit
+                print(work_buffer)
+                if odd_digits:
+                    print('Нечетные цифры:', ', '.join([d_db[digit] for digit in odd_digits]))
+                else:
+                    print('Нечетных цифр нет.')
+            work_buffer = ""
+            buffer = file.read(buffer_len)
+        else:
+            buffer = file.read(buffer_len)
