@@ -3,6 +3,7 @@ d_db = {'1': 'один',  '3': 'три', '5': 'пять', '7': 'семь', '9': 
 buffer_len = 1
 work_buffer = ""
 work_buffer_len = buffer_len
+h=0
 with open("text.txt") as file:
     buffer = file.read(buffer_len)
     if not buffer:
@@ -13,6 +14,7 @@ with open("text.txt") as file:
             buffer = file.read(buffer_len)
         if len(work_buffer) > 0:
             if '777' in work_buffer and work_buffer.count('777')==1:
+                h=1
                 odd_digits = ''
                 for digit in work_buffer:
                     if int(digit) % 2 != 0:
@@ -26,3 +28,5 @@ with open("text.txt") as file:
             buffer = file.read(buffer_len)
         else:
             buffer = file.read(buffer_len)
+if h==0:
+    print("В файле отсутствует группа из трёх подряд идущих цифр 7")
